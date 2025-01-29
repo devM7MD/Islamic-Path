@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسار طلب العلم</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+        }
+        .course-card {
+            transition: transform 0.2s;
+        }
+        .course-card:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-zinc-900 text-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-5xl">
+        <h1 class="text-4xl font-bold text-center mb-12 text-white">مسار طلب العلم</h1>
+
+        <div class="space-y-12">
+            <!-- Level Status Legend -->
+            <div class="bg-zinc-800 rounded-lg p-4 mb-8">
+                <h3 class="text-lg font-semibold mb-3">حالة المواد</h3>
+                <div class="flex gap-6">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                        <span>مكتمل</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
+                        <span>قيد التعلم</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 bg-red-500 rounded-full"></span>
+                        <span>متوقف</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Each Level Section -->
+            <div id="levels"></div>
+        </div>
+    </div>
+
+    <script>
+        const levels = [
+            {
+                title: 'المستوى الأول (أصول العقيدة)',
+                courses: [
+                    {
+                        title: 'الأصول الثلاثة وأدلتها',
+                        teacher: 'عثمان الخميس',
+                        status: 'completed',
+                        link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbrf4Hd2ISMN00247XV1aCyXR'
+                    },
+                    {
+                        title: 'القواعد الأربعة',
+                        teacher: 'عثمان الخميس',
+                        status: 'completed',
+                        link: 'https://youtu.be/d5Q5jK16NvA'
+                    },
+                    {
+                        title: 'كشف الشبهات',
+                        teacher: 'عثمان الخميس',
+                        status: 'completed',
+                        link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbresMzfiwyDY68iyQ3ias3uu'
+                    },
+                    {
+                        title: 'كتاب التوحيد',
+                        teacher: 'عثمان الخميس',
+                        status: 'completed',
+                        link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbrf_SShnm9SEJpXT6dPSp8D-'
+                    }
+                ]
+            },
+            {
+                title: 'المستوى الثاني (العقيدة)',
+                courses: [
+                    {
+                        title: 'العقيدة الواسطية',
+                        teacher: 'ابن عثيمين',
+                        status: 'in-progress',
+                        link: 'https://youtube.com/playlist?list=PLXS0usquloW-IXuZTBpY8si9ZLeV7i3AV'
+                    },
+                    {
+                        title: 'العقيدة الطحاوية',
+                        teacher: 'ابن باز',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLtrdYKXsRcHDvzR0PROWtr_u-OeiFqD7m'
+                    },
+                    {
+                        title: 'العقيدة الحموية',
+                        teacher: 'ابن عثيمين',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLXS0usquloW8SOMd2Yr-4WtRKj5OTOycB'
+                    },
+                    {
+                        title: 'العقيدة التدمرية',
+                        teacher: 'ابن عثيمين',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLXS0usquloW-W771UMDXlJw4q1wzdGAlK'
+                    }
+                ]
+            },
+            {
+                title: 'المستوى الثالث (أصول اللغة)',
+                courses: [
+                    {
+                        title: 'الآجرومية',
+                        teacher: 'عثمان الخميس',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbrdM719lgYY4hYbLXK8MhDR1'
+                    },
+                    {
+                        title: 'ألفية بن مالك',
+                        teacher: 'ابن عثيمين',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLXS0usquloW8p8fvW8hev8FsVw70losFb'
+                    }
+                ]
+            },
+            {
+                title: 'المستوى الرابع (الحديث)',
+                courses: [
+                    {
+                        title: 'الأربعون النووية',
+                        teacher: 'ابن عثيمين',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLXS0usquloW_VC2gPb6nu1FFQTxWc1Ww_'
+                    },
+                    {
+                        title: 'عمدة الأحكام',
+                        teacher: 'محمد بن محمد المختار الشنقيطي',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLCAO2n36PPgKDrEyJHHe5zpDM_ugYP3cN'
+                    },
+                    {
+                        title: 'بلوغ المرام',
+                        teacher: 'ابن عثيمين',
+                        status: 'paused',
+                        link: 'https://youtube.com/playlist?list=PLXS0usquloW_QoH8GvBQetdVOXSDsuNcd'
+                    },
+                    {
+                        title: 'صحيح البخاري',
+                        teacher: 'ابن عثيمين',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLXS0usquloW8vk6FwSeWfR9ES9pcZ_BNI'
+                    },
+                    {
+                        title: 'صحيح مسلم',
+                        teacher: 'ابن عثيمين',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLWzzF688g_ngEqrI4eR7ouTKuQlOvS59E'
+                    },
+                    {
+                        title: 'سنن الترمذي',
+                        teacher: 'عبد المحسن بن حمد',
+                        status: 'paused',
+                        link: 'https://youtube.com/playlist?list=PL_jw1r_ejylNc-ynW9YOGgBaw8VYhGtmD'
+                    },
+                    {
+                        title: 'سنن النسائي',
+                        teacher: 'عبد المحسن بن حمد',
+                        status: 'paused',
+                        link: 'https://youtube.com/playlist?list=PLWzzF688g_niAfyP6SE763ZrC2TRCzRiQ'
+                    },
+                    {
+                        title: 'سنن ابي داود',
+                        teacher: 'عبد المحسن بن حمد',
+                        status: 'paused',
+                        link: 'https://youtube.com/playlist?list=PLWzzF688g_nhsZeIM0LBiCzgs1TF62lRV'
+                    },
+                    {
+                        title: 'سنن ابن ماجه',
+                        teacher: 'عبد المحسن بن حمد',
+                        status: 'paused',
+                        link: 'https://youtube.com/playlist?list=PLWzzF688g_njPxv_YC8n3n56daS_qpTy9'
+                    }
+                ]
+            },
+            {
+                title: 'المستوى الخامس (المصطلح)',
+                courses: [
+                    {
+                        title: 'نخبة الفكر',
+                        teacher: 'عثمان الخميس',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbrdun4AKhsVMrhcEIJO0tm36'
+                    },
+                    {
+                        title: 'ألفية العراقي',
+                        teacher: 'عثمان الخميس',
+                        status: 'paused',
+                        link: 'https://www.youtube.com/playlist?list=PLWH2kEvwZ2mMOfDm1C8Z_KXwnNoJJmOTJ'
+                    }
+                ]
+            },
+            {
+                title: 'المستوى السادس (الفقه)',
+                courses: [
+                    {
+                        title: 'زاد المستقنع',
+                        teacher: 'ابن عثيمين',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLXS0usquloW_eC9EGBL66I1Fss3Oravm1'
+                    },
+                    {
+                        title: 'عمدة الفقه',
+                        teacher: 'صالح الفوزان',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PL3523jgHxjka_SRj_DSBXp3QdXVutQYOq'
+                    },
+                    {
+                        title: 'دليل الطالب لنيل المطالب',
+                        teacher: 'عثمان الخميس',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbrfY35pIEuCUpawOF1mntPng'
+                    },
+                    {
+                        title: 'الكافي في فقه أحمد',
+                        teacher: 'ابن عثيمين',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLXS0usquloW-wxxJQYc1QVkkAur4SoURi'
+                    },
+                    {
+                        title: 'المقنع',
+                        teacher: 'عبد الكريم الخضير',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLXQbyHRXkWsBmC4uIzYa_-PirBkEoWC_n'
+                    },
+                    {
+                        title: 'المغني',
+                        teacher: 'محمد حسن عبد الغفار',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PL9arFrYUgHuH4gXGf44K_hHxlXI2JbaZ5'
+                    }
+                ]
+            },
+            {
+                title: 'المستوى السابع (أصول الفقه)',
+                courses: [
+                    {
+                        title: 'الورقات للجويني',
+                        teacher: 'ابن عثيمين',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbrcMBFPvbFCKALJd24rbHHAi'
+                    },
+                    {
+                        title: 'روضة الناظر',
+                        teacher: 'عبد الكريم النملة',
+                        status: 'pending',
+                        link: 'https://www.youtube.com/playlist?list=PL914QhoC1BhtZuDy01rYuTy2KyfuJMlVU'
+                    }
+                ]
+            },
+            {
+                title: 'المستوى الثامن (الفرائض)',
+                courses: [
+                    {
+                        title: 'الفرائض البرهانية',
+                        teacher: 'ابن عثيمين',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLXS0usquloW-1PLX64I_BOcGF4ttDgxH0'
+                    },
+                    {
+                        title: 'الفوائد الجلية',
+                        teacher: 'ابن باز',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLWzzF688g_ngeWpl7qnvGc6Po2XBDx8VX'
+                    }
+                ]
+            },
+            {
+                title: 'المستوى التاسع (التفسير)',
+                courses: [
+                    {
+                        title: 'تفسير القرآن العظيم',
+                        teacher: 'ابن كثير',
+                        status: 'in-progress',
+                        link: 'https://youtube.com/playlist?list=PLjVcvOj1zB9OTh94_0SuZIjujfSTDhyCb'
+                    }
+                ]
+            },
+            {
+                title: 'المستوى العاشر (أصول التفسير)',
+                courses: [
+                    {
+                        title: 'المقدمة في أصول التفسير',
+                        teacher: 'صالح آل شيخ',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLabBqCjtdZ0EAD_lN80zUci3pXpEtto9R'
+                    }
+                ]
+            },
+            {
+                title: 'المستوى الحادي عشر (السيرة النبوية)',
+                courses: [
+                    {
+                        title: 'مختصر السيرة لشيخ محمد بن عبد الوهاب',
+                        teacher: 'علي الشبل',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLycg__lR4Pbvh7gSndbV5yK8_UqLO9vxd'
+                    },
+                    {
+                        title: 'زاد المعاد في هدي خير العباد',
+                        teacher: 'حسن بخاري',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLgaTRTylCbZDo3NyLb7i_NYIyhIKp-Kcq'
+                    },
+                    {
+                        title: 'مختصر زاد المعاد لشيخ محمد عبد الوهاب',
+                        teacher: 'صالح الفوزان',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PL3523jgHxjkY0IPnNI_pooEMUhkvC7AZJ'
+                    }
+                ]
+            },
+            {
+                title: 'المستوى الثاني عشر (لسان العرب)',
+                courses: []
+            }
+         ];
+
+        function getStatusColor(status) {
+            const colors = {
+                'completed': 'bg-green-500',
+                'in-progress': 'bg-yellow-500',
+                'paused': 'bg-red-500'
+            };
+            return colors[status] || 'bg-gray-500';
+        }
+
+        function createCourseCard(course) {
+            return `
+                <div class="course-card bg-zinc-800 rounded-lg p-6 hover:bg-zinc-700">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-xl font-semibold">${course.title}</h3>
+                            <p class="text-gray-400 mt-1">${course.teacher}</p>
+                        </div>
+                        <span class="w-3 h-3 ${getStatusColor(course.status)} rounded-full"></span>
+                    </div>
+                    <a href="${course.link}" target="_blank" 
+                       class="mt-4 inline-block text-blue-400 hover:text-blue-300 text-sm">
+                        مشاهدة المحتوى
+                    </a>
+                </div>
+            `;
+        }
+
+        function renderLevels() {
+            const levelsContainer = document.getElementById('levels');
+            levels.forEach(level => {
+                const levelElement = document.createElement('section');
+                levelElement.className = 'mb-12';
+                levelElement.innerHTML = `
+                    <h2 class="text-2xl font-bold mb-6 text-emerald-400">${level.title}</h2>
+                    <div class="grid gap-6 md:grid-cols-2">
+                        ${level.courses.map(course => createCourseCard(course)).join('')}
+                    </div>
+                `;
+                levelsContainer.appendChild(levelElement);
+            });
+        }
+
+        // Initialize the page
+        renderLevels();
+    </script>
+</body>
+</html>
