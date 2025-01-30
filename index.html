@@ -30,7 +30,10 @@
                         <span>حتى الآن ميزة التعديل على الحالة لكل مستوى غير متوفرة</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span>المستوى الثاني عشر لم يجهز بعد لكن الباقي جاهز</span> 
+                        <span>تم عمل تعديلات على المنهج بشكل أفضل بإرشاد أحد المشايخ وفقه الله</span> 
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>تم عمل تعديلات على المستويات وجمعها وترتيبها ونقص ما لا يلزم</span> 
                     </div>
                 </div>
             </div>
@@ -62,31 +65,35 @@
     <script>
         const levels = [
             {
-                title: 'المستوى الأول (أصول العقيدة)',
+                title: 'المستوى الأول (التوحيد)',
                 courses: [
                     {
                         title: 'الأصول الثلاثة وأدلتها',
+                        creator: "محمد بن عبد الوهاب",
                         teacher: 'عثمان الخميس',
                         status: 'completed',
                         link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbrf4Hd2ISMN00247XV1aCyXR'
                     },
                     {
-                        title: 'القواعد الأربعة',
+                        title: 'القواعد الأربع',
+                        creator: "محمد بن عبد الوهاب",
                         teacher: 'عثمان الخميس',
                         status: 'completed',
                         link: 'https://youtu.be/d5Q5jK16NvA'
                     },
-                    {
-                        title: 'كشف الشبهات',
-                        teacher: 'عثمان الخميس',
-                        status: 'completed',
-                        link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbresMzfiwyDY68iyQ3ias3uu'
-                    },
-                    {
+                                        {
                         title: 'كتاب التوحيد',
+                        creator: "محمد بن عبد الوهاب",
                         teacher: 'عثمان الخميس',
                         status: 'completed',
                         link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbrf_SShnm9SEJpXT6dPSp8D-'
+                    },
+                    {
+                        title: 'كشف الشبهات',
+                        creator: "محمد بن عبد الوهاب",
+                        teacher: 'عثمان الخميس',
+                        status: 'completed',
+                        link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbresMzfiwyDY68iyQ3ias3uu'
                     }
                 ]
             },
@@ -94,42 +101,69 @@
                 title: 'المستوى الثاني (العقيدة)',
                 courses: [
                     {
-                        title: 'العقيدة الواسطية',
-                        teacher: 'ابن عثيمين',
-                        status: 'in-progress',
-                        link: 'https://youtube.com/playlist?list=PLXS0usquloW-IXuZTBpY8si9ZLeV7i3AV'
-                    },
-                    {
-                        title: 'العقيدة الطحاوية',
-                        teacher: 'ابن باز',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLtrdYKXsRcHDvzR0PROWtr_u-OeiFqD7m'
-                    },
-                    {
                         title: 'العقيدة الحموية',
-                        teacher: 'ابن عثيمين',
+                        creator: "أحمد بن عبد الحليم (ابن تيمية)",
+                        teacher: 'محمد بن صالح العثيمين',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PLXS0usquloW8SOMd2Yr-4WtRKj5OTOycB'
                     },
                     {
                         title: 'العقيدة التدمرية',
-                        teacher: 'ابن عثيمين',
+                        creator: "أحمد بن عبد الحليم (ابن تيمية)",
+                        teacher: 'محمد بن صالح العثيمين',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PLXS0usquloW-W771UMDXlJw4q1wzdGAlK'
+                    },
+                                        {
+                        title: 'العقيدة الواسطية',
+                        creator: "أحمد بن عبد الحليم (ابن تيمية)",
+                        teacher: 'محمد بن صالح العثيمين',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLXS0usquloW-IXuZTBpY8si9ZLeV7i3AV'
+                    },
+                    {
+                        title: 'العقيدة الطحاوية',
+                        creator: "أبو جعفر الطحاوي",
+                        teacher: 'عبد العزيز عبد الله بن باز',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLtrdYKXsRcHDvzR0PROWtr_u-OeiFqD7m'
                     }
                 ]
             },
             {
-                title: 'المستوى الثالث (أصول اللغة)',
+                title: 'المستوى الثالث (اللغة العربية)',
                 courses: [
                     {
                         title: 'الآجرومية',
-                        teacher: 'عثمان الخميس',
+                        creator: "محمد بن آجروم",
+                        teacher: 'محمد بن صالح العثيمين',
                         status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbrdM719lgYY4hYbLXK8MhDR1'
+                        link: 'https://youtube.com/playlist?list=PLXS0usquloW8B1Pn4_RlfmBwsDFe0e_W4&feature=shared'
+                    },
+                    {
+                        title: 'قطر الندى وبل الصدى',
+                        creator: "ابن هشام الأنصاري",
+                        teacher: 'سليمان بن عبد العزيز العيوني',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLo5R_noFITeAa08zqsa2hc3zR_o9JdWfQ&feature=shared'
+                    },
+                                        {
+                        title: 'الجمل في النحو',
+                        creator: "الخليل بن أحمد الفراهيدي",
+                        teacher: 'غير محدد حتى الآن',
+                        status: 'pending',
+                        link: '#'
+                    },
+                    {
+                        title: 'شذور الذهب في معرفة كلام العرب',
+                        creator: "ابن هشام الأنصاري",
+                        teacher: 'محمد محمود الشنقيطي',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PL60ols60x5rSwvWEXRxaHQMz5Wb8Z3JQw&feature=shared'
                     },
                     {
                         title: 'ألفية بن مالك',
+                        creator: "ابن مالك",
                         teacher: 'ابن عثيمين',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PLXS0usquloW8p8fvW8hev8FsVw70losFb'
@@ -141,54 +175,63 @@
                 courses: [
                     {
                         title: 'الأربعون النووية',
+                        creator: "يحيى بن شرف الدين النووي",
                         teacher: 'ابن عثيمين',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PLXS0usquloW_VC2gPb6nu1FFQTxWc1Ww_'
                     },
                     {
-                        title: 'عمدة الأحكام',
-                        teacher: 'محمد بن محمد المختار الشنقيطي',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLCAO2n36PPgKDrEyJHHe5zpDM_ugYP3cN'
-                    },
-                    {
                         title: 'بلوغ المرام',
+                        creator: "ابن حجر العسقلاني",
                         teacher: 'ابن عثيمين',
                         status: 'paused',
                         link: 'https://youtube.com/playlist?list=PLXS0usquloW_QoH8GvBQetdVOXSDsuNcd'
                     },
                     {
+                        title: 'عمدة الأحكام',
+                        creator: "عبد العني المقدسي",
+                        teacher: 'محمد بن محمد المختار الشنقيطي',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLCAO2n36PPgKDrEyJHHe5zpDM_ugYP3cN'
+                    },
+                    {
                         title: 'صحيح البخاري',
+                        creator: "محمد بن اسماعيل البخاري",
                         teacher: 'ابن عثيمين',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PLXS0usquloW8vk6FwSeWfR9ES9pcZ_BNI'
                     },
                     {
                         title: 'صحيح مسلم',
+                        creator: "مسلم ابن الحجاج النيسابوري",
                         teacher: 'ابن عثيمين',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PLWzzF688g_ngEqrI4eR7ouTKuQlOvS59E'
                     },
                     {
                         title: 'سنن الترمذي',
+                        creator: "أبو عيسى محمد بن عيسى الترمذي",
                         teacher: 'عبد المحسن بن حمد',
                         status: 'paused',
                         link: 'https://youtube.com/playlist?list=PL_jw1r_ejylNc-ynW9YOGgBaw8VYhGtmD'
                     },
                     {
                         title: 'سنن النسائي',
+                        creator: "أبو عبد الرحمن أحمد بن شعيب النسائي",
                         teacher: 'عبد المحسن بن حمد',
                         status: 'paused',
                         link: 'https://youtube.com/playlist?list=PLWzzF688g_niAfyP6SE763ZrC2TRCzRiQ'
                     },
                     {
                         title: 'سنن ابي داود',
+                        creator: "أبو داود سليمان السجستاني",
                         teacher: 'عبد المحسن بن حمد',
                         status: 'paused',
                         link: 'https://youtube.com/playlist?list=PLWzzF688g_nhsZeIM0LBiCzgs1TF62lRV'
                     },
                     {
                         title: 'سنن ابن ماجه',
+                        creator: 'أبو عبد الله محمد بن يزيد بن ماجه القزويني',
                         teacher: 'عبد المحسن بن حمد',
                         status: 'paused',
                         link: 'https://youtube.com/playlist?list=PLWzzF688g_njPxv_YC8n3n56daS_qpTy9'
@@ -196,16 +239,46 @@
                 ]
             },
             {
-                title: 'المستوى الخامس (المصطلح)',
+                title: 'المستوى الخامس (علم الأصول)',
                 courses: [
                     {
+                        title: 'الأصول من علم الأصول',
+                        creator: 'محمد صالح العثيمين',
+                        teacher: 'محمد صالح العثيمين',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLXS0usquloW9jHVH2lCQ_DLbzbCiR2-Uc&feature=shared'
+                    },
+                    {
+                        title: 'نظم الورقات',
+                        creator: 'أبو المعالي الجويني',
+                        teacher: 'محمد صالح العثيمين',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLXS0usquloW_9__LjAyfIDe4C8An6HiGR&feature=shared'
+                    },
+                    {
+                        title: 'منظومة القواعد الفقهية',
+                        creator: 'عبد الرحمن بن ناصر السعدي',
+                        teacher: 'عثمان الخميس',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbrfqYBRbj-SsgYVQkp3y4iKP&feature=shared'
+                    },
+                    {
+                        title: 'النبذ في اصول الفقه',
+                        creator: "ابن حزم الأندلسي",
+                        teacher: 'غير محدد حتى الآن',
+                        status: 'pending',
+                        link: '#'
+                    },
+                    {
                         title: 'نخبة الفكر',
+                        creator: 'ابن حجر العسقلاني',
                         teacher: 'عثمان الخميس',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbrdun4AKhsVMrhcEIJO0tm36'
                     },
                     {
                         title: 'ألفية العراقي',
+                        creator: ' أبو الفضل زين الدين عبد الرحيم بن الحسين العراقيّ',
                         teacher: 'عثمان الخميس',
                         status: 'paused',
                         link: 'https://www.youtube.com/playlist?list=PLWH2kEvwZ2mMOfDm1C8Z_KXwnNoJJmOTJ'
@@ -216,37 +289,43 @@
                 title: 'المستوى السادس (الفقه)',
                 courses: [
                     {
-                        title: 'زاد المستقنع',
-                        teacher: 'ابن عثيمين',
+                        title: 'زاد المستقنع في اختصار المقنع',
+                        creator: 'شرف الدين أبي النجا موسى بن احمد الحجاوي',
+                        teacher: 'محمد صالح العثيمين',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PLXS0usquloW_eC9EGBL66I1Fss3Oravm1'
                     },
                     {
                         title: 'عمدة الفقه',
-                        teacher: 'صالح الفوزان',
+                        creator: 'ابن قدامة المقدسي',
+                        teacher: 'عبد السلام الشويعر',
                         status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PL3523jgHxjka_SRj_DSBXp3QdXVutQYOq'
+                        link: 'https://youtube.com/playlist?list=PLl9thoP_s9vVkA5bYmB43dNEJKoydKVzY&feature=shared'
                     },
                     {
                         title: 'دليل الطالب لنيل المطالب',
+                        creator: 'مرعي بن يوسف الكرمي',
                         teacher: 'عثمان الخميس',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbrfY35pIEuCUpawOF1mntPng'
                     },
                     {
                         title: 'الكافي في فقه أحمد',
-                        teacher: 'ابن عثيمين',
+                        creator: 'ابن قدامة المقدسي',
+                        teacher: 'محمد صالح العثيمين',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PLXS0usquloW-wxxJQYc1QVkkAur4SoURi'
                     },
                     {
                         title: 'المقنع',
+                        creator: 'ابن قدامة المقدسي',
                         teacher: 'عبد الكريم الخضير',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PLXQbyHRXkWsBmC4uIzYa_-PirBkEoWC_n'
                     },
                     {
                         title: 'المغني',
+                        creator: 'ابن قدامة المقدسي',
                         teacher: 'محمد حسن عبد الغفار',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PL9arFrYUgHuH4gXGf44K_hHxlXI2JbaZ5'
@@ -254,88 +333,69 @@
                 ]
             },
             {
-                title: 'المستوى السابع (أصول الفقه)',
-                courses: [
-                    {
-                        title: 'الورقات للجويني',
-                        teacher: 'ابن عثيمين',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbrcMBFPvbFCKALJd24rbHHAi'
-                    },
-                    {
-                        title: 'روضة الناظر',
-                        teacher: 'عبد الكريم النملة',
-                        status: 'pending',
-                        link: 'https://www.youtube.com/playlist?list=PL914QhoC1BhtZuDy01rYuTy2KyfuJMlVU'
-                    }
-                ]
-            },
-            {
-                title: 'المستوى الثامن (الفرائض)',
+                title: 'المستوى السابع (الفرائض)',
                 courses: [
                     {
                         title: 'الفرائض البرهانية',
-                        teacher: 'ابن عثيمين',
+                        creator: 'محمد صالح العثيمين',
+                        teacher: 'محمد صالح العثيمين',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PLXS0usquloW-1PLX64I_BOcGF4ttDgxH0'
                     },
                     {
                         title: 'الفوائد الجلية',
-                        teacher: 'ابن باز',
+                        creator: 'عبد العزيز عبد الله بن باز',
+                        teacher: 'عبد العزيز عبد الله بن باز',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PLWzzF688g_ngeWpl7qnvGc6Po2XBDx8VX'
                     }
                 ]
             },
             {
-                title: 'المستوى التاسع (التفسير)',
+                title: 'المستوى الثامن (التفسير)',
                 courses: [
                     {
+                        title: 'المقدمة في أصول التفسير',
+                        creator: 'أحمد بن عبد الحليم (ابن تيمية)',
+                        teacher: 'صالح آل شيخ',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLabBqCjtdZ0EAD_lN80zUci3pXpEtto9R'
+                    },
+                    {
                         title: 'تفسير القرآن العظيم',
-                        teacher: 'ابن كثير',
+                        creator: 'ابن كثير الدمشقي',
+                        teacher: 'تعلم ذاتي',
                         status: 'in-progress',
                         link: 'https://youtube.com/playlist?list=PLjVcvOj1zB9OTh94_0SuZIjujfSTDhyCb'
                     }
                 ]
             },
             {
-                title: 'المستوى العاشر (أصول التفسير)',
+                title: 'المستوى التاسع (السيرة النبوية)',
                 courses: [
                     {
-                        title: 'المقدمة في أصول التفسير',
-                        teacher: 'صالح آل شيخ',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLabBqCjtdZ0EAD_lN80zUci3pXpEtto9R'
-                    }
-                ]
-            },
-            {
-                title: 'المستوى الحادي عشر (السيرة النبوية)',
-                courses: [
-                    {
-                        title: 'مختصر السيرة لشيخ محمد بن عبد الوهاب',
+                        title: "مختصر السيرة",
+                        creator: 'محمد بن عبد الوهاب',
                         teacher: 'علي الشبل',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PLycg__lR4Pbvh7gSndbV5yK8_UqLO9vxd'
                     },
                     {
-                        title: 'زاد المعاد في هدي خير العباد',
-                        teacher: 'حسن بخاري',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLgaTRTylCbZDo3NyLb7i_NYIyhIKp-Kcq'
-                    },
-                    {
-                        title: 'مختصر زاد المعاد لشيخ محمد عبد الوهاب',
+                        title: 'مختصر زاد المعاد',
+                        creator: 'محمد بن عبد الوهاب',
                         teacher: 'صالح الفوزان',
                         status: 'pending',
                         link: 'https://youtube.com/playlist?list=PL3523jgHxjkY0IPnNI_pooEMUhkvC7AZJ'
                     }
+                    {
+                        title: 'زاد المعاد في هدي خير العباد',
+                        creator: 'ابن قيم الجوزية',
+                        teacher: 'حسن بخاري',
+                        status: 'pending',
+                        link: 'https://youtube.com/playlist?list=PLgaTRTylCbZDo3NyLb7i_NYIyhIKp-Kcq'
+                    },
                 ]
             },
-            {
-                title: 'المستوى الثاني عشر (لسان العرب)',
-                courses: []
-            }
          ];
 
         function getStatusColor(status) {
@@ -353,6 +413,7 @@
                     <div class="flex items-start justify-between">
                         <div>
                             <h3 class="text-xl font-semibold">${course.title}</h3>
+                            <p class="text-gray-200 mt-1">المؤلف: ${course.creator}</p>
                             <p class="text-gray-400 mt-1">${course.teacher}</p>
                         </div>
                         <span class="w-3 h-3 ${getStatusColor(course.status)} rounded-full"></span>
