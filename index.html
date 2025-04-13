@@ -16,6 +16,52 @@
         .course-card:hover {
             transform: translateY(-2px);
         }
+        .status-indicator {
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        .status-indicator:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #27272a;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            width: 120px;
+        }
+        .dropdown-item {
+            padding: 8px 12px;
+            transition: background-color 0.2s;
+            cursor: pointer;
+        }
+        .dropdown-item:hover {
+            background-color: #3f3f46;
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            background-color: #10b981;
+            color: white;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 50;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-zinc-900 text-gray-100 min-h-screen">
@@ -25,9 +71,10 @@
         <div class="space-y-12">
             <div class="bg-zinc-800 rounded-lg p-4 mb-8">
                 <h3 class="text-lg font-semibold mb-3">جديد الموقع</h3>
-                <div class="flex gap-6">
+                <div class="flex flex-col gap-2">
                     <div class="flex items-center gap-2">
-                        <span>حتى الآن ميزة التعديل على الحالة لكل مستوى غير متوفرة</span>
+                        <span class="text-green-400">✓</span>
+                        <span>تم إضافة ميزة تعديل حالة المواد: اضغط على المؤشر الملون لتغيير الحالة وسيتم حفظها تلقائياً</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <span>(جديد) تم تعديل على باب الفقه وحذف ما لا يلزم والأمهات والمطولات غير الضرورية في بداية طالب علم مبتدى</span> 
@@ -55,6 +102,14 @@
                         <span>لم أصل له بعد</span>
                     </div>
                 </div>
+                <div class="mt-4 flex items-center">
+                    <button id="reset-progress" class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-md text-sm transition">إعادة ضبط جميع الحالات</button>
+                    <button id="export-progress" class="mr-3 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md text-sm transition">تصدير البيانات</button>
+                    <label for="import-progress" class="mr-3 bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-md text-sm transition cursor-pointer">
+                        استيراد البيانات
+                    </label>
+                    <input type="file" id="import-progress" class="hidden" accept=".json">
+                </div>
             </div>
 
             <!-- Each Level Section -->
@@ -62,345 +117,30 @@
         </div>
     </div>
 
-    <script>
-        const levels = [
-            {
-                title: 'المستوى الأول (التوحيد)',
-                courses: [
-                    {
-                        title: 'الأصول الثلاثة وأدلتها',
-                        creator: "محمد بن عبد الوهاب",
-                        teacher: 'صالح آل شيخ',
-                        status: 'completed',
-                        link: 'https://www.youtube.com/playlist?list=PLabBqCjtdZ0ERxTokcBfIeP2EPz0slM5F'
-                    },
-                    {
-                        title: 'القواعد الأربع',
-                        creator: "محمد بن عبد الوهاب",
-                        teacher: 'عثمان الخميس',
-                        status: 'completed',
-                        link: 'https://youtu.be/d5Q5jK16NvA'
-                    },
-                                        {
-                        title: 'كتاب التوحيد',
-                        creator: "محمد بن عبد الوهاب",
-                        teacher: 'محمد صالح العثيمين',
-                        status: 'in-progress',
-                        link: 'https://www.youtube.com/playlist?list=PL6C71skKjoGs2kN0lcNjl1WLJhVbwosng'
-                    },
-                    {
-                        title: 'كشف الشبهات',
-                        creator: "محمد بن عبد الوهاب",
-                        teacher: 'عثمان الخميس',
-                        status: 'completed',
-                        link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbresMzfiwyDY68iyQ3ias3uu'
-                    }
-                ]
-            },
-            {
-                title: 'المستوى الثاني (العقيدة)',
-                courses: [
-                    {
-                        title: 'العقيدة الواسطية',
-                        creator: "أحمد بن عبد الحليم (ابن تيمية)",
-                        teacher: 'محمد بن صالح العثيمين',
-                        status: 'in-progress',
-                        link: 'https://youtube.com/playlist?list=PLXS0usquloW-IXuZTBpY8si9ZLeV7i3AV'
-                    },
-                    {
-                        title: 'الفتوى الحموية الكبرى',
-                        creator: "أحمد بن عبد الحليم (ابن تيمية)",
-                        teacher: 'صالح بن فوزان الفوزان',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PL3523jgHxjkbakuwQWdEtThGaDelexGuF&feature=shared'
-                    },
-                    {
-                        title: 'الرسالة التدمرية',
-                        creator: "أحمد بن عبد الحليم (ابن تيمية)",
-                        teacher: 'محمد بن صالح العثيمين',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLXS0usquloW-W771UMDXlJw4q1wzdGAlK'
-                    },
-                    {
-                        title: 'العقيدة الطحاوية',
-                        creator: "أبو جعفر الطحاوي",
-                        teacher: 'عبد العزيز عبد الله بن باز',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLtrdYKXsRcHDvzR0PROWtr_u-OeiFqD7m'
-                    }
-                ]
-            },
-            {
-                title: 'المستوى الثالث (اللغة العربية)',
-                courses: [
-                    {
-                        title: 'الآجرومية',
-                        creator: "محمد بن آجروم",
-                        teacher: 'محمد بن صالح العثيمين',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLXS0usquloW8B1Pn4_RlfmBwsDFe0e_W4&feature=shared'
-                    },
-                    {
-                        title: 'ألفية بن مالك',
-                        creator: "ابن مالك",
-                        teacher: 'محمد صالح العثيمين',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLXS0usquloW8p8fvW8hev8FsVw70losFb'
-                    }
-                ]
-            },
-            {
-                title: 'المستوى الرابع (الحديث)',
-                courses: [
-                    {
-                        title: 'الأربعون النووية',
-                        creator: "يحيى بن شرف الدين النووي",
-                        teacher: 'محمد صالح العثيمين',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLXS0usquloW_VC2gPb6nu1FFQTxWc1Ww_'
-                    },
-                    {
-                        title: 'بلوغ المرام',
-                        creator: "ابن حجر العسقلاني",
-                        teacher: 'محمد صالح العثيمين',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLXS0usquloW_QoH8GvBQetdVOXSDsuNcd'
-                    },
-                    {
-                        title: 'عمدة الأحكام',
-                        creator: "عبد العني المقدسي",
-                        teacher: 'محمد بن محمد المختار الشنقيطي',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLCAO2n36PPgKDrEyJHHe5zpDM_ugYP3cN'
-                    },
-                    {
-                        title: 'صحيح البخاري',
-                        creator: "محمد بن اسماعيل البخاري",
-                        teacher: 'محمد صالح العثيمين',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLXS0usquloW8vk6FwSeWfR9ES9pcZ_BNI'
-                    },
-                    {
-                        title: 'صحيح مسلم',
-                        creator: "مسلم ابن الحجاج النيسابوري",
-                        teacher: 'محمد صالح العثيمين',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLWzzF688g_ngEqrI4eR7ouTKuQlOvS59E'
-                    },
-                    // {
-                    //     title: 'سنن الترمذي',
-                    //     creator: "أبو عيسى محمد بن عيسى الترمذي",
-                    //     teacher: 'عبد المحسن بن حمد',
-                    //     status: 'pending',
-                    //     link: 'https://youtube.com/playlist?list=PL_jw1r_ejylNc-ynW9YOGgBaw8VYhGtmD'
-                    // },
-                    // {
-                    //     title: 'سنن النسائي',
-                    //     creator: "أبو عبد الرحمن أحمد بن شعيب النسائي",
-                    //     teacher: 'عبد المحسن بن حمد',
-                    //     status: 'pending',
-                    //     link: 'https://youtube.com/playlist?list=PLWzzF688g_niAfyP6SE763ZrC2TRCzRiQ'
-                    // },
-                    // {
-                    //     title: 'سنن ابي داود',
-                    //     creator: "أبو داود سليمان السجستاني",
-                    //     teacher: 'عبد المحسن بن حمد',
-                    //     status: 'pending',
-                    //     link: 'https://youtube.com/playlist?list=PLWzzF688g_nhsZeIM0LBiCzgs1TF62lRV'
-                    // },
-                    // {
-                    //     title: 'سنن ابن ماجه',
-                    //     creator: 'أبو عبد الله محمد بن يزيد بن ماجه القزويني',
-                    //     teacher: 'عبد المحسن بن حمد',
-                    //     status: 'pending',
-                    //     link: 'https://youtube.com/playlist?list=PLWzzF688g_njPxv_YC8n3n56daS_qpTy9'
-                    // }
-                ]
-            },
-            {
-                title: 'المستوى الخامس (علم الأصول)',
-                courses: [
-                    {
-                        title: 'الأصول من علم الأصول',
-                        creator: 'محمد صالح العثيمين',
-                        teacher: 'محمد صالح العثيمين',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLXS0usquloW9jHVH2lCQ_DLbzbCiR2-Uc&feature=shared'
-                    },
-                    {
-                        title: 'نظم الورقات',
-                        creator: 'أبو المعالي الجويني',
-                        teacher: 'محمد صالح العثيمين',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLXS0usquloW_9__LjAyfIDe4C8An6HiGR&feature=shared'
-                    },
-                    {
-                        title: 'منظومة القواعد الفقهية',
-                        creator: 'عبد الرحمن بن ناصر السعدي',
-                        teacher: 'وليد بن راشد السعيدان',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLwlXp17rLNq_b3gkAOVgy5xtmZOQY47py&feature=shared'
-                    },
-                    {
-                        title: 'نزهة النظر في توضيح نخبة الفكر',
-                        creator: 'ابن حجر العسقلاني',
-                        teacher: 'محمد بن صالح العثيمين',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLXS0usquloW_WMyCq01tDlxenJPrkucJz&feature=shared'
-                    },
-                    {
-                        title: 'ألفية العراقي',
-                        creator: ' أبو الفضل زين الدين عبد الرحيم بن الحسين العراقيّ',
-                        teacher: 'عثمان الخميس',
-                        status: 'pending',
-                        link: 'https://www.youtube.com/playlist?list=PLWH2kEvwZ2mMOfDm1C8Z_KXwnNoJJmOTJ'
-                    }
-                ]
-            },
-            {
-                title: 'المستوى السادس (الفقه)',
-                courses: [
-                    {
-                        title: 'زاد المستقنع في اختصار المقنع',
-                        creator: 'شرف الدين أبي النجا موسى بن احمد الحجاوي',
-                        teacher: 'محمد صالح العثيمين',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLXS0usquloW_eC9EGBL66I1Fss3Oravm1'
-                    },
-                    {
-                        title: 'الروض المربع في شرح زاد المستقنع',
-                        creator: 'البهوتي',
-                        teacher: 'الشيخ محمد باجابر',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PL202gp2IFCvn9UZgTWT8DIAu6z7PxqSzM&feature=shared'
-                    },
-                    // {
-                    //     title: 'عمدة الفقه',
-                    //     creator: 'ابن قدامة المقدسي',
-                    //     teacher: 'عبد السلام الشويعر',
-                    //     status: 'pending',
-                    //     link: 'https://youtube.com/playlist?list=PLl9thoP_s9vVkA5bYmB43dNEJKoydKVzY&feature=shared'
-                    // },
-                    // {
-                    //     title: 'دليل الطالب لنيل المطالب',
-                    //     creator: 'مرعي بن يوسف الكرمي',
-                    //     teacher: 'عثمان الخميس',
-                    //     status: 'pending',
-                    //     link: 'https://youtube.com/playlist?list=PLx3Fh1kiMbrfY35pIEuCUpawOF1mntPng'
-                    // },
-                ]
-            },
-            {
-                title: 'المستوى السابع (الفرائض)',
-                courses: [
-                    {
-                        title: 'الفرائض البرهانية',
-                        creator: 'محمد صالح العثيمين',
-                        teacher: 'محمد صالح العثيمين',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLXS0usquloW-1PLX64I_BOcGF4ttDgxH0'
-                    },
-                    {
-                        title: 'الفوائد الجلية',
-                        creator: 'عبد العزيز عبد الله بن باز',
-                        teacher: 'عبد العزيز عبد الله بن باز',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLWzzF688g_ngeWpl7qnvGc6Po2XBDx8VX'
-                    }
-                ]
-            },
-            {
-                title: 'المستوى الثامن (التفسير)',
-                courses: [
-                    {
-                        title: 'المقدمة في أصول التفسير',
-                        creator: 'أحمد بن عبد الحليم (ابن تيمية)',
-                        teacher: 'صالح آل شيخ',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLabBqCjtdZ0EAD_lN80zUci3pXpEtto9R'
-                    },
-                    {
-                        title: 'تفسير القرآن العظيم',
-                        creator: 'ابن كثير الدمشقي',
-                        teacher: 'تعلم ذاتي',
-                        status: 'in-progress',
-                        link: 'https://youtube.com/playlist?list=PLjVcvOj1zB9OTh94_0SuZIjujfSTDhyCb'
-                    }
-                ]
-            },
-            {
-                title: 'المستوى التاسع (السيرة النبوية)',
-                courses: [
-                    {
-                        title: "مختصر السيرة",
-                        creator: 'محمد بن عبد الوهاب',
-                        teacher: 'علي الشبل',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLycg__lR4Pbvh7gSndbV5yK8_UqLO9vxd'
-                    },
-                    {
-                        title: 'مختصر زاد المعاد',
-                        creator: 'محمد بن عبد الوهاب',
-                        teacher: 'صالح الفوزان',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PL3523jgHxjkY0IPnNI_pooEMUhkvC7AZJ'
-                    },
-                    {
-                        title: 'زاد المعاد في هدي خير العباد',
-                        creator: 'ابن قيم الجوزية',
-                        teacher: 'حسن بخاري',
-                        status: 'pending',
-                        link: 'https://youtube.com/playlist?list=PLgaTRTylCbZDo3NyLb7i_NYIyhIKp-Kcq'
-                    },
-                ]
-            },
-         ];
+    <!-- Status Dropdown Menu -->
+    <div id="status-dropdown" class="dropdown-menu">
+        <div class="dropdown-item" data-status="completed">
+            <div class="flex items-center gap-2">
+                <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                <span>مكتمل</span>
+            </div>
+        </div>
+        <div class="dropdown-item" data-status="in-progress">
+            <div class="flex items-center gap-2">
+                <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
+                <span>قيد التعلم</span>
+            </div>
+        </div>
+        <div class="dropdown-item" data-status="pending">
+            <div class="flex items-center gap-2">
+                <span class="w-3 h-3 bg-gray-500 rounded-full"></span>
+                <span>لم أصل له بعد</span>
+            </div>
+        </div>
+    </div>
 
-        function getStatusColor(status) {
-            const colors = {
-                'completed': 'bg-green-500',
-                'in-progress': 'bg-yellow-500',
-                'pending': 'bg-gray-500'
-            };
-            return colors[status] || 'bg-gray-500';
-        }
-
-        function createCourseCard(course) {
-            return `
-                <div class="course-card bg-zinc-800 rounded-lg p-6 hover:bg-zinc-700">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <h3 class="text-xl font-semibold">${course.title}</h3>
-                            <p class="text-gray-200 mt-1">المؤلف: ${course.creator}</p>
-                            <p class="text-gray-400 mt-1">${course.teacher}</p>
-                        </div>
-                        <span class="w-3 h-3 ${getStatusColor(course.status)} rounded-full"></span>
-                    </div>
-                    <a href="${course.link}" target="_blank" 
-                       class="mt-4 inline-block text-blue-400 hover:text-blue-300 text-sm">
-                        مشاهدة المحتوى
-                    </a>
-                </div>
-            `;
-        }
-
-        function renderLevels() {
-            const levelsContainer = document.getElementById('levels');
-            levels.forEach(level => {
-                const levelElement = document.createElement('section');
-                levelElement.className = 'mb-12';
-                levelElement.innerHTML = `
-                    <h2 class="text-2xl font-bold mb-6 text-emerald-400">${level.title}</h2>
-                    <div class="grid gap-6 md:grid-cols-2">
-                        ${level.courses.map(course => createCourseCard(course)).join('')}
-                    </div>
-                `;
-                levelsContainer.appendChild(levelElement);
-            });
-        }
-
-        // Initialize the page
-        renderLevels();
-    </script>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">تم حفظ التغييرات</div>
+    <script src="script.js"></script>
 </body>
 </html>
